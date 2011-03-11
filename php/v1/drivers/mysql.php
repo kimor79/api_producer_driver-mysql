@@ -284,6 +284,10 @@ class ApiProducerDriverMySQL {
 			$query .= ' HAVING ' . $statements['having'];
 		}
 
+		if(array_key_exists('order', $statements)) {
+			$query .= ' ORDER BY ' . $statements['order'];
+		}
+
 		if(array_key_exists('limit', $statements)) {
 			$query .= sprintf(" LIMIT %s %s",
 				$statements['limit'][0],
