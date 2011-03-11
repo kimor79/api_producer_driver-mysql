@@ -305,11 +305,11 @@ class ApiProducerDriverMySQL {
 		}
 
 		$data = $this->queryRead($query, $refs);
-		if(is_array($return)) {
+		if(is_array($data)) {
 			$records = array();
 
 			while(list($junk, $record) = each($data)) {
-				$return[] = $record;
+				$records[] = $record;
 			}
 
 			return $records;
