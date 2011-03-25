@@ -313,6 +313,10 @@ class ApiProducerDriverMySQL {
 			$records = array();
 
 			while(list($junk, $record) = each($data)) {
+				if($statements['_one']) {
+					return $record;
+				}
+
 				$records[] = $record;
 			}
 
