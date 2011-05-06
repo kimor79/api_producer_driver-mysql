@@ -317,7 +317,12 @@ class ApiProducerDriverMySQL {
 					return $record;
 				}
 
-				$records[] = $record;
+				if($statements['_single']) {
+					$records[] =
+						$record[$statements['_single']];
+				} else {
+					$records[] = $record;
+				}
 			}
 
 			return $records;
