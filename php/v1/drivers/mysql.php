@@ -39,6 +39,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 class ApiProducerDriverMySQL {
 
 	protected $config = array();
+	protected $count = 0;
 	protected $error = '';
 	private $mysql;
 	private $prefix = '';
@@ -75,6 +76,14 @@ class ApiProducerDriverMySQL {
 
 	public function __deconstruct() {
 		$this->mysql->close();
+	}
+
+	/**
+	 * Return the total number of records from a query
+	 * @return int
+	 */
+	public function count() {
+		return (int) $this->count;
 	}
 
 	/**
@@ -329,6 +338,18 @@ class ApiProducerDriverMySQL {
 		}
 
 		return false;
+	}
+
+	/**
+	 * Set the count
+	 * @param mixed the total number
+	 */
+	protected function setCount($count) {
+		if(is_numeric($count)) {
+			$this->count = $count;
+		} else {
+			$this->count = 0;
+		}
 	}
 }
 
