@@ -298,7 +298,7 @@ class ApiProducerDriverMySQL {
 		}
 
 		if(array_key_exists('limit', $statements)) {
-			$query .= sprintf(" LIMIT %s %s",
+			$query .= sprintf(" LIMIT %s, %s",
 				$statements['limit'][0],
 				(array_key_exists(1, $statements['limit'])) ?
 					$statements['limit'][1] :
