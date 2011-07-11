@@ -95,6 +95,25 @@ class ApiProducerDriverMySQL {
 	}
 
 	/**
+	 * Get the list of columns for a table
+	 * @param string $table
+	 * @return mixed array or false
+	 */
+	protected function getColumns($table) {
+		$record = $this->select(array(
+			'_one' => true,
+			'from' => sprintf("`%s%s`", $this->prefix, $table),
+			'limit' => array(0, 1),
+		));
+
+		if(is_array($record)) {
+			return array_keys($record);
+		}
+
+		return false;
+	}
+
+	/**
 	 * Get a config value
 	 * @param string $key
 	 * @param string $default
