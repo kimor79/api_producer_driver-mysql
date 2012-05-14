@@ -2,7 +2,7 @@
 
 /**
 
-Copyright (c) 2011, Kimo Rosenbaum and contributors
+Copyright (c) 2011-2012, Kimo Rosenbaum and contributors
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
@@ -317,6 +317,10 @@ class ApiProducerDriverMySQL {
 		}
 
 		if(array_key_exists('limit', $statements)) {
+			if(!$statements['limit'][0]) {
+				$statements['limit'][0] = 0;
+			}
+
 			$query .= sprintf(" LIMIT %s, %s",
 				$statements['limit'][0],
 				(array_key_exists(1, $statements['limit'])) ?
