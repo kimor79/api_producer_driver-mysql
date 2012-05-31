@@ -417,7 +417,8 @@ class APIProducerV2DriverMySQL extends APIProducerV2Driver{
 			$query .= ' FROM ' . $statements['from'];
 		}
 
-		if(array_key_exists('where', $statements)) {
+		if(array_key_exists('where', $statements) &&
+				($statements['where'])) {
 			$query .= ' WHERE ' . $statements['where'];
 		}
 
