@@ -103,7 +103,7 @@ class APIProducerV2DriverMySQL extends APIProducerV2Driver{
 			}
 		}
 
-		if(!empty($limits)) {
+		if(!empty($limit)) {
 			$output['limit'] = $limit;
 		}
 
