@@ -229,6 +229,28 @@ class APIProducerV2DriverMySQL extends APIProducerV2Driver{
 	}
 
 	/**
+	 * Prep fields
+	 * @param array $fields
+	 * @param array $input
+	 * @return array binds, sets, values
+	 */
+	protected function prepFields($fields, $input = array()) {
+		$binds = '';
+		$sets = array();
+		$values = array();
+
+		foreach ($fields as $field => $mfield) {
+			if(array_key_exists($field, $input)) {
+				$binds .= 's';
+				$sets[] = $mfield . ' = ?';
+				$values[] = $input[$field];
+			}
+		}
+
+		return array($binds, $sets, $values);
+	}
+
+	/**
 	 * Perform a read-only query
 	 * @param string $query
 	 * @param array $binds
