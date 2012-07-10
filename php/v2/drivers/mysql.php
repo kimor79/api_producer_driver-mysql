@@ -251,6 +251,30 @@ class APIProducerV2DriverMySQL extends APIProducerV2Driver{
 	}
 
 	/**
+	 * Prep fields for INSERT .. VALUES
+	 * @param array $fields
+	 * @param array $input
+	 * @return array binds, cols, sets, values
+	 */
+	protected function prepFieldsMulti($fields, $input = array()) {
+		$binds = '';
+		$cols = array();
+		$sets = array();
+		$values = array();
+
+		foreach ($fields as $field => $mfield) {
+			if(array_key_exists($field, $input)) {
+				$binds .= 's';
+				$cols[] = $mfield;
+				$sets[] = '?';
+				$values[] = $input[$field];
+			}
+		}
+
+		return array($binds, $cols, $sets, $values);
+	}
+
+	/**
 	 * Perform a read-only query
 	 * @param string $query
 	 * @param array $binds
