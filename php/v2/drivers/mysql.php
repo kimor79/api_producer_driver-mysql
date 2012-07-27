@@ -456,10 +456,15 @@ class APIProducerV2DriverMySQL extends APIProducerV2Driver{
 		$query = 'SELECT ';
 		$values = array();
 
-		$query .= (array_key_exists('select', $statements)) ?
-			$statements['select'] : '*';
+		if(array_key_exists('select', $statements) &&
+				($statements['select'])) {
+			$query .= $statements['select'];
+		} else {
+			$query .= '*';
+		}
 
-		if(array_key_exists('from', $statements)) {
+		if(array_key_exists('from', $statements) &&
+				($statements['from'])) {
 			$query .= ' FROM ' . $statements['from'];
 		}
 
@@ -468,15 +473,18 @@ class APIProducerV2DriverMySQL extends APIProducerV2Driver{
 			$query .= ' WHERE ' . $statements['where'];
 		}
 
-		if(array_key_exists('group', $statements)) {
+		if(array_key_exists('group', $statements) &&
+				($statements['group'])) {
 			$query .= ' GROUP BY ' . $statements['group'];
 		}
 
-		if(array_key_exists('having', $statements)) {
+		if(array_key_exists('having', $statements) &&
+				($statements['having'])) {
 			$query .= ' HAVING ' . $statements['having'];
 		}
 
-		if(array_key_exists('order', $statements)) {
+		if(array_key_exists('order', $statements) &&
+				($statements['order'])) {
 			$query .= ' ORDER BY ' . $statements['order'];
 		}
 
@@ -494,7 +502,8 @@ class APIProducerV2DriverMySQL extends APIProducerV2Driver{
 				$limit_one, $limit_two);
 		}
 
-		if(array_key_exists('procedure', $statements)) {
+		if(array_key_exists('procedure', $statements) &&
+				($statements['procedure'])) {
 			$query .= ' PROCEDURE ' . $statements['procedure'];
 		}
 
