@@ -1,0 +1,10 @@
+api_producer_driver-mysql requires the following:
+
+* PHP (tested with 5.3)
+  * mysqli
+* MySQL (tested with 5.5)
+* A webserver (tested with Apache 2.2)
+* api_producer (https://github.com/kimor79/api_consumer)
+
+Copy the files in php/ to <php include path>/api_producer/. E.g.:
+  cp -R php /usr/local/include/php/api_producer
