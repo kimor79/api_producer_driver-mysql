@@ -215,8 +215,12 @@ class APIProducerV2DriverMySQL extends APIProducerV2Driver{
 					}
 					reset($values);
 
-					$where[] = sprintf("`%s` IN (%s)",
-						$field, implode(', ', $eqs));
+					if(!empty($eqs)) {
+						$where[] = sprintf(
+							"`%s` IN (%s)", $field,
+							implode(', ', $eqs));
+					}
+
 					break;
 				}
 			}
